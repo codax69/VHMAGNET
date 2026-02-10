@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About – VH Magnet</title>
+    <meta
+      name="description"
+      content="Learn about VH Magnet — our story, values, and commitment to handcrafting beautiful custom photo magnets and stickers."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a href="index.html" class="nav-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#g)" />
+            <path
+              d="M9 16a7 7 0 0114 0M16 9v14"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#7C3AED" />
+                <stop offset="1" stop-color="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          VH<span>Magnet</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li>
+            <a
+              href="https://wa.me/919265318453"
+              target="_blank"
+              class="btn btn-whatsapp"
+              style="padding: 0.5rem 1.25rem; font-size: 0.85rem"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+                />
+              </svg>
+              Chat Now
+            </a>
+          </li>
+        </ul>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════ ABOUT HERO ═══════════ -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="hero-badge" style="margin-bottom: 1.5rem">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            />
+          </svg>
+          Our Story
+        </div>
+        <h1>
+          Crafting <span class="text-gradient">Memories</span>, One Magnet at a
+          Time
+        </h1>
+        <p>
+          VH Magnet was born out of a simple idea — turn your most cherished
+          photos into everyday keepsakes that bring joy.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ STORY ═══════════ -->
+    <section class="section">
+      <div class="container" style="max-width: 800px">
+        <div class="fade-in" style="text-align: center; margin-bottom: 3rem">
+          <h2
+            style="font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 1rem"
+          >
+            Why <span class="text-gradient">VH Magnet</span>?
+          </h2>
+          <p
+            style="
+              color: var(--clr-text-muted);
+              line-height: 1.8;
+              font-size: 1.05rem;
+            "
+          >
+            We believe every photo tells a story. Our mission is to bring those
+            stories to life as beautiful, tangible products you can stick on
+            your fridge, laptop, or anywhere you like. We use premium materials,
+            vibrant printing, and strong magnetic backing to ensure every magnet
+            and sticker looks and feels amazing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ VALUES ═══════════ -->
+    <section class="section" style="background: var(--clr-bg-alt)">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>What We <span class="text-gradient">Stand For</span></h2>
+        </div>
+        <div class="values-grid fade-in">
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                />
+              </svg>
+            </div>
+            <h3>Premium Quality</h3>
+            <p>
+              High-resolution printing with a glossy finish that makes every
+              colour pop.
+            </p>
+          </div>
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+            </div>
+            <h3>Easy Ordering</h3>
+            <p>
+              No complicated checkout — just order directly via WhatsApp in
+              under a minute.
+            </p>
+          </div>
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <h3>Fast Delivery</h3>
+            <p>
+              We process and ship your order quickly so your memories reach you
+              fast.
+            </p>
+          </div>
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+                />
+              </svg>
+            </div>
+            <h3>Personal Touch</h3>
+            <p>
+              Every order is handcrafted with care. We treat each magnet as our
+              own.
+            </p>
+          </div>
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <h3>Eco-Friendly</h3>
+            <p>
+              We use sustainable packaging and eco-conscious materials wherever
+              possible.
+            </p>
+          </div>
+          <div class="glass-card value-card">
+            <div class="value-icon">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+            </div>
+            <h3>Satisfaction Guaranteed</h3>
+            <p>
+              Not happy with your order? We'll make it right. Your satisfaction
+              is our promise.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ TRUST BADGES ═══════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Why Customers <span class="text-gradient">Trust Us</span></h2>
+        </div>
+        <div class="trust-badges fade-in">
+          <div class="glass-card trust-badge">
+            <div class="trust-badge-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+                />
+              </svg>
+            </div>
+            Handmade Products
+          </div>
+          <div class="glass-card trust-badge">
+            <div class="trust-badge-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            Fast Delivery
+          </div>
+          <div class="glass-card trust-badge">
+            <div class="trust-badge-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            500+ Happy Customers
+          </div>
+          <div class="glass-card trust-badge">
+            <div class="trust-badge-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            Secure &amp; Reliable
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <section
+      class="section"
+      style="background: var(--gradient-hero); text-align: center"
+    >
+      <div class="container fade-in">
+        <h2 style="font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 1rem">
+          Want to Create Your Own?
+        </h2>
+        <p
+          style="
+            color: var(--clr-text-muted);
+            max-width: 480px;
+            margin: 0 auto 2rem;
+          "
+        >
+          Browse our products and start customising today.
+        </p>
+        <a
+          href="products.html"
+          class="btn btn-primary"
+          style="font-size: 1.1rem; padding: 1rem 2.5rem"
+        >
+          Browse Products
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#gf2)" />
+                <path
+                  d="M9 16a7 7 0 0114 0M16 9v14"
+                  stroke="#fff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <defs>
+                  <linearGradient id="gf2" x1="0" y1="0" x2="32" y2="32">
+                    <stop stop-color="#7C3AED" />
+                    <stop offset="1" stop-color="#EC4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              VH<span>Magnet</span>
+            </a>
+            <p>
+              Handcrafted custom magnets &amp; stickers, delivered across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li>
+                <a href="products/product.html?id=photo-magnet"
+                  >Photo Magnets</a
+                >
+              </li>
+              <li>
+                <a href="products/product.html?id=custom-sticker"
+                  >Custom Stickers</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="https://wa.me/91XXXXXXXXXX" target="_blank"
+                  >WhatsApp Us</a
+                >
+              </li>
+              <li>
+                <a href="mailto:hello@vhmagnet.com">hello@vhmagnet.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 VH Magnet. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/91XXXXXXXXXX"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+        />
+      </svg>
+    </a>
+
+    <script src="assets/js/order.js"></script>
+  </body>
+</html>

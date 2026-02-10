@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product – VH Magnet</title>
+    <meta
+      name="description"
+      content="Customize and order your product via WhatsApp. Upload your photo, choose size, and place your order instantly."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#g)" />
+            <path
+              d="M9 16a7 7 0 0114 0M16 9v14"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#7C3AED" />
+                <stop offset="1" stop-color="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          VH<span>Magnet</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../products.html" class="active">Products</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li>
+            <a
+              href="https://wa.me/919265318453"
+              target="_blank"
+              class="btn btn-whatsapp"
+              style="padding: 0.5rem 1.25rem; font-size: 0.85rem"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+                />
+              </svg>
+              Chat Now
+            </a>
+          </li>
+        </ul>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════ DYNAMIC PRODUCT CONTENT ═══════════ -->
+    <div id="product-page">
+      <!-- Rendered by JavaScript -->
+      <div
+        style="
+          min-height: 60vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 5rem;
+        "
+      >
+        <p style="color: var(--clr-text-muted); font-size: 1.1rem">
+          Loading product...
+        </p>
+      </div>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="nav-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#gf)" />
+                <path
+                  d="M9 16a7 7 0 0114 0M16 9v14"
+                  stroke="#fff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <defs>
+                  <linearGradient id="gf" x1="0" y1="0" x2="32" y2="32">
+                    <stop stop-color="#7C3AED" />
+                    <stop offset="1" stop-color="#EC4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              VH<span>Magnet</span>
+            </a>
+            <p>
+              Handcrafted custom magnets &amp; stickers, delivered across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../products.html">Products</a></li>
+              <li><a href="../about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="https://wa.me/919265318453" target="_blank"
+                  >WhatsApp Us</a
+                >
+              </li>
+              <li>
+                <a href="mailto:hello@vhmagnet.com">hello@vhmagnet.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 VH Magnet. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/919265318453"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+        />
+      </svg>
+    </a>
+
+    <!-- Scripts -->
+    <script src="../assets/js/products-data.js"></script>
+    <script src="../assets/js/order.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get product ID from URL params: ?id=photo-magnet
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const product = getProductById(productId);
+
+        if (!product) {
+          document.getElementById("product-page").innerHTML = `
+            <div style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:5rem;gap:1rem;">
+              <h2 style="color:#fff;font-family:Outfit,sans-serif;">Product Not Found</h2>
+              <p style="color:var(--clr-text-muted);">The product you're looking for doesn't exist.</p>
+              <a href="../products.html" class="btn btn-primary">View All Products</a>
+            </div>`;
+          return;
+        }
+
+        // Update page title & meta
+        document.title = product.name + " – VH Magnet";
+        document.querySelector('meta[name="description"]').content =
+          product.description;
+
+        // Build feature badges HTML
+        const featuresHtml = product.features
+          .map(
+            (f) => `
+          <div style="flex:1;min-width:80px;background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:0.75rem;padding:0.75rem 0.5rem;text-align:center;">
+            <div style="font-size:1.5rem;margin-bottom:0.25rem;display:flex;justify-content:center;color:var(--clr-text);">${FEATURE_ICONS[f.icon] || ""}</div>
+            <div style="font-size:0.8rem;color:var(--clr-text-muted);">${f.label}</div>
+          </div>
+        `,
+          )
+          .join("");
+
+        // Build size buttons HTML
+        const sizesHtml = product.sizes
+          .map(
+            (s) => `
+          <button class="size-btn" data-size="${s.value}" data-price="${s.price}">${s.label}</button>
+        `,
+          )
+          .join("");
+
+        // Render the product page
+        document.getElementById("product-page").innerHTML = `
+          <!-- Breadcrumbs -->
+          <section style="padding:5.5rem 0 0;background:var(--clr-bg);">
+            <div class="container">
+              <nav style="display:flex;gap:0.5rem;font-size:0.9rem;flex-wrap:wrap;align-items:center;">
+                <a href="../index.html" style="color:var(--clr-text-muted)">Home</a>
+                <span style="color:var(--clr-text-muted)">&rsaquo;</span>
+                <a href="../products.html" style="color:var(--clr-text-muted)">Products</a>
+                <span style="color:var(--clr-text-muted)">&rsaquo;</span>
+                <span class="text-gradient" style="font-weight:600">${product.name}</span>
+              </nav>
+            </div>
+          </section>
+
+          <!-- Product Detail -->
+          <section class="section" style="padding-top:2rem;">
+            <div class="container">
+              <div class="product-detail-grid">
+                <!-- Left: Visual -->
+                <div class="fade-in">
+                  <div style="background:${product.gradient};display:flex;align-items:center;justify-content:center;border-radius:var(--radius);aspect-ratio:1;max-height:480px;">
+                    ${product.svgIcon}
+                  </div>
+                  <!-- Features -->
+                  <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+                    ${featuresHtml}
+                  </div>
+                </div>
+
+                <!-- Right: Options -->
+                <div class="fade-in">
+                  <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--clr-accent);font-weight:600;">${product.category}</span>
+                  <h1 style="font-family:Outfit,sans-serif;font-size:2.2rem;font-weight:800;color:#6D28D9;margin:0.5rem 0;">${product.name}</h1>
+                  <p style="color:var(--clr-text-muted);line-height:1.7;margin-bottom:2rem;">${product.description}</p>
+
+                  <!-- Size -->
+                  <div class="option-group">
+                    <label class="option-label">Select Size</label>
+                    <div class="size-options">${sizesHtml}</div>
+                  </div>
+
+                  <!-- Quantity -->
+                  <div class="option-group">
+                    <label class="option-label">Quantity</label>
+                    <div class="qty-stepper">
+                      <button id="qty-minus" class="qty-btn" aria-label="Decrease quantity">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14"/></svg>
+                      </button>
+                      <span id="qty-value" style="min-width:2.5rem;text-align:center;font-weight:600;font-size:1.1rem;color:var(--clr-text);user-select:none;">1</span>
+                      <button id="qty-plus" class="qty-btn" aria-label="Increase quantity">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Upload -->
+                  <div class="option-group">
+                    <label class="option-label">Upload Your Photo</label>
+                    <div class="upload-area" id="upload-area">
+                      <input type="file" id="image-input" accept="image/jpeg,image/png,image/webp" />
+                      <div class="upload-icon">
+                        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+                      </div>
+                      <p>Click or drag & drop your image here</p>
+                      <p class="upload-hint">JPG, PNG, or WebP &bull; Max 10 MB</p>
+                    </div>
+                    <div class="image-preview" id="image-preview" style="display:none;">
+                      <img id="preview-img" alt="Preview" />
+                      <button id="remove-img" class="remove-img-btn" aria-label="Remove image">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="price-display">
+                    <span style="font-size:0.9rem;color:var(--clr-text-muted);">Total</span>
+                    <div id="total-price" style="font-family:Outfit,sans-serif;font-size:2rem;font-weight:800;color:#6D28D9;">
+                      <span class="currency">&#x20B9;</span>${product.sizes[0].price}
+                    </div>
+                  </div>
+
+                  <!-- Order Button -->
+                  <button class="btn btn-whatsapp" id="order-btn" onclick="placeOrder()" disabled style="width:100%;padding:1rem;font-size:1.1rem;gap:0.75rem;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"/></svg>
+                    <span class="btn-text">Order on WhatsApp</span>
+                  </button>
+
+                  <!-- Note -->
+                  <div style="margin-top:1.5rem;padding:1rem;background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:0.75rem;display:flex;gap:0.75rem;font-size:0.9rem;color:var(--clr-text-muted);align-items:start;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Your image will be <strong>uploaded automatically</strong> and the link will be included in your WhatsApp message. We will confirm your order and share payment details there.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+
+        // ── Initialize order functionality on the dynamically-rendered elements ──
+        // Build price map from .size-options buttons only (not filter tabs)
+        const priceMap = {};
+        document.querySelectorAll(".size-options .size-btn").forEach((btn) => {
+          priceMap[btn.dataset.size] = parseInt(btn.dataset.price, 10);
+        });
+        initOrderPage(product.name, priceMap);
+
+        // Re-observe dynamically injected .fade-in elements for scroll animation
+        const observer = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) e.target.classList.add("visible");
+            }),
+          { threshold: 0.15 },
+        );
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

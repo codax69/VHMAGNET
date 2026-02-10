@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products – VH Magnet</title>
+    <meta
+      name="description"
+      content="Browse our collection of custom photo magnets and stickers. Choose your product, upload a photo, and order via WhatsApp."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a href="index.html" class="nav-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#g)" />
+            <path
+              d="M9 16a7 7 0 0114 0M16 9v14"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#7C3AED" />
+                <stop offset="1" stop-color="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          VH<span>Magnet</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a
+              href="https://wa.me/919265318453"
+              target="_blank"
+              class="btn btn-whatsapp"
+              style="padding: 0.5rem 1.25rem; font-size: 0.85rem"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+                />
+              </svg>
+              Chat Now
+            </a>
+          </li>
+        </ul>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════ PAGE HEADER ═══════════ -->
+    <section class="about-hero" style="padding: 8rem 0 3rem">
+      <div class="container">
+        <div class="hero-badge" style="margin-bottom: 1.5rem">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          Our Collection
+        </div>
+        <h1>Our <span class="text-gradient">Products</span></h1>
+        <p>
+          Pick a product, upload your photo, and order in seconds via WhatsApp.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ PRODUCT GRID (Dynamic) ═══════════ -->
+    <section class="section">
+      <div class="container">
+        <!-- Category Filter Tabs -->
+        <div
+          style="
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+          "
+          id="category-tabs"
+        >
+          <button
+            class="size-btn active"
+            data-filter="all"
+            onclick="filterProducts('all', this)"
+          >
+            All Products
+          </button>
+          <button
+            class="size-btn"
+            data-filter="magnet"
+            onclick="filterProducts('magnet', this)"
+          >
+            Magnets
+          </button>
+          <button
+            class="size-btn"
+            data-filter="sticker"
+            onclick="filterProducts('sticker', this)"
+          >
+            Stickers
+          </button>
+        </div>
+
+        <!-- Grid Container -->
+        <div
+          class="product-grid fade-in"
+          id="product-grid"
+          style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))"
+        >
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ WHY CHOOSE US ═══════════ -->
+    <section class="section" style="background: var(--clr-bg-alt)">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Why Choose <span class="text-gradient">VH Magnet</span>?</h2>
+        </div>
+        <div class="steps-grid fade-in">
+          <div class="glass-card step-card">
+            <div class="step-number">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                />
+              </svg>
+            </div>
+            <h3>Premium Print</h3>
+            <p>Vibrant colours with professional-grade printing technology.</p>
+          </div>
+          <div class="glass-card step-card">
+            <div class="step-number">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+            </div>
+            <h3>Durable Materials</h3>
+            <p>Strong magnets and waterproof vinyl that last for years.</p>
+          </div>
+          <div class="glass-card step-card">
+            <div class="step-number">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+            </div>
+            <h3>Fast Shipping</h3>
+            <p>Orders dispatched within 24–48 hours across India.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#gf3)" />
+                <path
+                  d="M9 16a7 7 0 0114 0M16 9v14"
+                  stroke="#fff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <defs>
+                  <linearGradient id="gf3" x1="0" y1="0" x2="32" y2="32">
+                    <stop stop-color="#7C3AED" />
+                    <stop offset="1" stop-color="#EC4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              VH<span>Magnet</span>
+            </a>
+            <p>
+              Handcrafted custom magnets &amp; stickers, delivered across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li>
+                <a href="products/product.html?id=photo-magnet"
+                  >Photo Magnets</a
+                >
+              </li>
+              <li>
+                <a href="products/product.html?id=custom-sticker"
+                  >Custom Stickers</a
+                >
+              </li>
+              <li>
+                <a href="products/product.html?id=fridge-magnet"
+                  >Fridge Magnet Set</a
+                >
+              </li>
+              <li>
+                <a href="products/product.html?id=laptop-sticker"
+                  >Laptop Stickers</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="https://wa.me/919265318453" target="_blank"
+                  >WhatsApp Us</a
+                >
+              </li>
+              <li>
+                <a href="mailto:hello@vhmagnet.com">hello@vhmagnet.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 VH Magnet. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/919265318453"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+        />
+      </svg>
+    </a>
+
+    <script src="assets/js/products-data.js"></script>
+    <script src="assets/js/order.js"></script>
+    <script>
+      function renderProducts(filter = "all") {
+        const grid = document.getElementById("product-grid");
+        const filtered =
+          filter === "all"
+            ? PRODUCTS
+            : PRODUCTS.filter((p) => p.category === filter);
+        grid.innerHTML = filtered
+          .map(
+            (p) => `
+          <a href="products/product.html?id=${p.id}" class="glass-card product-card" data-category="${p.category}" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div style="height:180px;background:${p.gradient};display:flex;align-items:center;justify-content:center;">
+              ${p.svgIcon}
+            </div>
+            <div class="product-card-body">
+              <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--clr-accent);font-weight:600;">${p.category}</span>
+              <h3>${p.name}</h3>
+              <p>${p.tagline}</p>
+              <div class="product-card-price">Starting at ₹${p.startingPrice}</div>
+            </div>
+          </a>
+        `,
+          )
+          .join("");
+      }
+
+      function filterProducts(category, btn) {
+        document
+          .querySelectorAll("#category-tabs .size-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProducts(category);
+      }
+
+      // Initial render
+      document.addEventListener("DOMContentLoaded", () => renderProducts());
+    </script>
+  </body>
+</html>

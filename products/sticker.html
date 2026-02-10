@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Sticker – VH Magnet</title>
+    <meta
+      name="description"
+      content="Create your custom vinyl sticker. Choose size, upload your design, and order via WhatsApp. Waterproof, scratch-resistant, and vibrant."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar scrolled" id="navbar">
+      <div class="container nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#g)" />
+            <path
+              d="M9 16a7 7 0 0114 0M16 9v14"
+              stroke="#fff"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#7C3AED" />
+                <stop offset="1" stop-color="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          VH<span>Magnet</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../products.html" class="active">Products</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li>
+            <a
+              href="https://wa.me/919265318453"
+              target="_blank"
+              class="btn btn-whatsapp"
+              style="padding: 0.5rem 1.25rem; font-size: 0.85rem"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+                />
+              </svg>
+              Chat Now
+            </a>
+          </li>
+        </ul>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════ BREADCRUMB ═══════════ -->
+    <div style="padding: 5.5rem 0 0">
+      <div class="container" style="padding-top: 1rem">
+        <nav style="font-size: 0.85rem; color: var(--clr-text-muted)">
+          <a href="../index.html" style="color: var(--clr-text-muted)">Home</a>
+          <span style="margin: 0 0.5rem">›</span>
+          <a href="../products.html" style="color: var(--clr-text-muted)"
+            >Products</a
+          >
+          <span style="margin: 0 0.5rem">›</span>
+          <span style="color: var(--clr-text)">Custom Sticker</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ═══════════ PRODUCT DETAIL ═══════════ -->
+    <section class="product-detail">
+      <div class="container">
+        <div class="product-detail-grid">
+          <!-- LEFT: Product Visual -->
+          <div class="fade-in">
+            <div class="glass-card" style="overflow: hidden">
+              <div
+                style="
+                  aspect-ratio: 1;
+                  background: linear-gradient(
+                    135deg,
+                    #831843,
+                    #ec4899,
+                    #f9a8d4
+                  );
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: var(--radius);
+                "
+              >
+                <svg width="200" height="200" fill="none" viewBox="0 0 200 200">
+                  <path
+                    d="M100 20L126 76l60 9-43 42 10 60-53-28-53 28 10-60-43-42 60-9z"
+                    fill="rgba(255,255,255,0.1)"
+                    stroke="#fff"
+                    stroke-width="2.5"
+                  />
+                  <circle
+                    cx="100"
+                    cy="82"
+                    r="24"
+                    fill="rgba(255,255,255,0.13)"
+                  />
+                  <text
+                    x="100"
+                    y="88"
+                    text-anchor="middle"
+                    fill="rgba(255,255,255,0.5)"
+                    font-size="10"
+                    font-family="Outfit"
+                  >
+                    YOUR DESIGN
+                  </text>
+                  <text
+                    x="100"
+                    y="170"
+                    text-anchor="middle"
+                    fill="rgba(255,255,255,0.6)"
+                    font-size="10"
+                    font-family="Outfit"
+                  >
+                    CUSTOM STICKER
+                  </text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Features -->
+            <div
+              style="
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+              "
+            >
+              <div
+                class="glass-card"
+                style="
+                  flex: 1;
+                  min-width: 120px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 01-1.806-1.741L3.5 8.5m16 4.5l-.83-4.15A2 2 0 0016.71 7H7.29a2 2 0 00-1.96 1.85L4.5 13"
+                    />
+                  </svg>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--clr-text-muted)">
+                  Waterproof
+                </div>
+              </div>
+              <div
+                class="glass-card"
+                style="
+                  flex: 1;
+                  min-width: 120px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--clr-text-muted)">
+                  Scratch-proof
+                </div>
+              </div>
+              <div
+                class="glass-card"
+                style="
+                  flex: 1;
+                  min-width: 120px;
+                  padding: 1rem;
+                  text-align: center;
+                "
+              >
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                    />
+                  </svg>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--clr-text-muted)">
+                  Vivid Print
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Customisation Form -->
+          <div class="fade-in product-detail-info">
+            <h1>Custom <span class="text-gradient">Sticker</span></h1>
+            <p class="description">
+              Personalised vinyl stickers for laptops, bottles, notebooks, and
+              more. Waterproof, scratch-resistant, and printed with vibrant
+              colours that don't fade.
+            </p>
+
+            <!-- Size -->
+            <div class="option-group">
+              <label class="option-label">Select Size</label>
+              <div class="size-options">
+                <button class="size-btn" data-size="2x2 inch" data-price="49">
+                  2×2 inch
+                </button>
+                <button class="size-btn" data-size="3x3 inch" data-price="79">
+                  3×3 inch
+                </button>
+                <button class="size-btn" data-size="A5 Sheet" data-price="149">
+                  A5 Sheet
+                </button>
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="option-group">
+              <label class="option-label">Quantity</label>
+              <div class="qty-stepper">
+                <button
+                  class="qty-btn"
+                  id="qty-minus"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+                <input
+                  class="qty-value"
+                  id="qty-value"
+                  type="number"
+                  value="1"
+                  min="1"
+                  max="100"
+                />
+                <button
+                  class="qty-btn"
+                  id="qty-plus"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="option-group">
+              <label class="option-label">Upload Your Design</label>
+              <div class="upload-area" id="upload-area">
+                <input
+                  type="file"
+                  id="image-input"
+                  accept="image/jpeg,image/png,image/webp"
+                />
+                <div class="upload-icon">
+                  <svg
+                    width="40"
+                    height="40"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <p>Click or drag &amp; drop your image here</p>
+                <p class="upload-hint">JPG, PNG, or WebP • Max 10 MB</p>
+              </div>
+              <div class="image-preview" id="image-preview">
+                <img id="preview-img" alt="Preview" />
+                <button
+                  class="remove-img"
+                  id="remove-img"
+                  aria-label="Remove image"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="price-display" id="total-price">
+              <span class="currency">₹</span>49
+            </div>
+
+            <!-- Order Button -->
+            <button
+              class="btn btn-whatsapp"
+              id="order-btn"
+              onclick="placeOrder()"
+              disabled
+              style="width: 100%; font-size: 1.1rem; padding: 1rem"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+                />
+              </svg>
+              Order on WhatsApp
+            </button>
+
+            <!-- Note -->
+            <div class="order-note">
+              <svg
+                width="18"
+                height="18"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="var(--clr-whatsapp)"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span
+                >Your image will be <strong>uploaded automatically</strong> and
+                the link will be included in your WhatsApp message. We will
+                confirm your order and share payment details there.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="nav-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#gf5)" />
+                <path
+                  d="M9 16a7 7 0 0114 0M16 9v14"
+                  stroke="#fff"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <defs>
+                  <linearGradient id="gf5" x1="0" y1="0" x2="32" y2="32">
+                    <stop stop-color="#7C3AED" />
+                    <stop offset="1" stop-color="#EC4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              VH<span>Magnet</span>
+            </a>
+            <p>
+              Handcrafted custom magnets &amp; stickers, delivered across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../products.html">Products</a></li>
+              <li><a href="../about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="photo-magnet.html">Photo Magnets</a></li>
+              <li><a href="sticker.html">Custom Stickers</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="https://wa.me/919265318453" target="_blank"
+                  >WhatsApp Us</a
+                >
+              </li>
+              <li>
+                <a href="mailto:hello@vhmagnet.com">hello@vhmagnet.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 VH Magnet. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/919265318453"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"
+        />
+      </svg>
+    </a>
+
+    <script src="../assets/js/order.js"></script>
+    <script>
+      // Initialize order page with Sticker pricing
+      document.addEventListener("DOMContentLoaded", () => {
+        const priceMap = {};
+        document.querySelectorAll(".size-btn").forEach((btn) => {
+          priceMap[btn.dataset.size] = parseInt(btn.dataset.price, 10);
+        });
+        initOrderPage("Custom Sticker", priceMap);
+      });
+    </script>
+  </body>
+</html>
