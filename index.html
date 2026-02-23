@@ -28,7 +28,7 @@
               inter: ["Inter", "sans-serif"],
             },
             colors: {
-              brand: { purple: "#7C3AED", pink: "#EC4899", accent: "#A78BFA" },
+              brand: { purple: "#1F4E9E", pink: "#E6392F", accent: "#E6D437" },
               surface: { DEFAULT: "rgba(30,41,59,0.6)", alt: "#1E293B" },
             },
           },
@@ -44,21 +44,11 @@
     <nav class="navbar" id="navbar">
       <div class="container nav-inner">
         <a href="index.html" class="nav-logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#g)" />
-            <path
-              d="M9 16a7 7 0 0114 0M16 9v14"
-              stroke="#fff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            />
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#7C3AED" />
-                <stop offset="1" stop-color="#EC4899" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img
+            src="assets/public/VHmagnet.svg"
+            alt="VH Magnet Logo"
+            class="nav-logo-img"
+          />
           VH<span>Magnet</span>
         </a>
         <ul class="nav-links" id="nav-links">
@@ -297,21 +287,11 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a href="index.html" class="nav-logo">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                <rect width="32" height="32" rx="8" fill="url(#gf)" />
-                <path
-                  d="M9 16a7 7 0 0114 0M16 9v14"
-                  stroke="#fff"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                />
-                <defs>
-                  <linearGradient id="gf" x1="0" y1="0" x2="32" y2="32">
-                    <stop stop-color="#7C3AED" />
-                    <stop offset="1" stop-color="#EC4899" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <img
+                src="assets/public/VHmagnet.svg"
+                alt="VH Magnet Logo"
+                class="nav-logo-img"
+              />
               VH<span>Magnet</span>
             </a>
             <p>
@@ -390,8 +370,8 @@
             .map(
               (p) => `
             <a href="products/product.html?id=${p.id}" class="glass-card product-card" style="text-decoration:none;color:inherit;cursor:pointer;">
-              <div style="height:180px;background:${p.gradient};display:flex;align-items:center;justify-content:center;">
-                ${p.svgIcon}
+              <div style="height:180px;background:${p.image ? "#000" : p.gradient};display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">` : p.svgIcon}
               </div>
               <div class="product-card-body">
                 <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--clr-accent);font-weight:600;">${p.category}</span>

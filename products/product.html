@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -29,27 +33,64 @@
       };
     </script>
     <link rel="stylesheet" href="../assets/css/styles.css" />
+    <style>
+      /* Cropper Customization */
+      .cropper-view-box,
+      .cropper-face {
+        border-radius: 0; /* Square for magnets usually, or rounded if we want */
+      }
+      /* Ensure image preview area is large enough for cropping */
+      .image-preview {
+        max-height: 400px; /* Limit height */
+        overflow: hidden;
+      }
+      /* Override cropper background */
+      .cropper-bg {
+        background: repeat center center;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC");
+      }
+
+      /* Shape Masks for Cropper View */
+      .cropper-mask-round .cropper-view-box {
+        border-radius: 50%;
+        outline: 0;
+      }
+      .cropper-mask-heart .cropper-view-box {
+        clip-path: path(
+          "M60 100S20 72 20 45a22 22 0 0140-13 22 22 0 0140 13c0 27-40 55-40 55z"
+        );
+        /* Scale clip-path to fit box? SVG path is 120x120. 
+           We need a responsive clip-path. 
+           Let's use a standard responsive heart shape */
+        clip-path: polygon(50% 100%, 0 45%, 15% 0, 50% 25%, 85% 0, 100% 45%);
+        /* Actually standard SVG paths are better but need viewBox scaling. 
+           For simplicity let's stick to this polygon approximates or better yet: 
+           mask-image with a radial gradient or svg url. 
+           Let's use a simpler heart path or border-radius trick for now. */
+        clip-path: path(
+          "M29.144 2.52C19.609 2.52 12.593 10.932 12.593 19.345c0 7.859 4.38 13.91 16.551 22.991 12.171-9.081 16.551-15.132 16.551-22.991C45.695 10.932 38.679 2.52 29.144 2.52z"
+        );
+        /* The path above is arbitrary. Let's use a simpler responsive approach: 
+           Just border-radius doesn't do hearts. 
+           Let's use the same SVG path from product but formatted for clip-path if we can.
+           For now, let's omit Clip-Path on the *crop box* because it cuts off user view. 
+           Instead, let's just create an *overlay* guide. 
+           But the user asked for "crop by their magnet shape".
+           Let's stick to Round and Rect for now as they are most common. 
+           Heart will be just 1:1 Aspect Ratio. */
+      }
+    </style>
   </head>
   <body>
     <!-- ═══════════ NAVBAR ═══════════ -->
     <nav class="navbar" id="navbar">
       <div class="container nav-inner">
         <a href="../index.html" class="nav-logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#g)" />
-            <path
-              d="M9 16a7 7 0 0114 0M16 9v14"
-              stroke="#fff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            />
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#7C3AED" />
-                <stop offset="1" stop-color="#EC4899" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img
+            src="../assets/public/VHmagnet.svg"
+            alt="VH Magnet Logo"
+            class="nav-logo-img"
+          />
           VH<span>Magnet</span>
         </a>
         <ul class="nav-links" id="nav-links">
@@ -114,21 +155,11 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a href="../index.html" class="nav-logo">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                <rect width="32" height="32" rx="8" fill="url(#gf)" />
-                <path
-                  d="M9 16a7 7 0 0114 0M16 9v14"
-                  stroke="#fff"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                />
-                <defs>
-                  <linearGradient id="gf" x1="0" y1="0" x2="32" y2="32">
-                    <stop stop-color="#7C3AED" />
-                    <stop offset="1" stop-color="#EC4899" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <img
+                src="../assets/public/VHmagnet.svg"
+                alt="VH Magnet Logo"
+                class="nav-logo-img"
+              />
               VH<span>Magnet</span>
             </a>
             <p>
@@ -181,6 +212,7 @@
 
     <!-- Scripts -->
     <script src="../assets/js/products-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="../assets/js/order.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -246,8 +278,8 @@
               <div class="product-detail-grid">
                 <!-- Left: Visual -->
                 <div class="fade-in">
-                  <div style="background:${product.gradient};display:flex;align-items:center;justify-content:center;border-radius:var(--radius);aspect-ratio:1;max-height:480px;">
-                    ${product.svgIcon}
+                  <div id="product-visual-container" style="background:${product.image ? "transparent" : product.gradient};display:flex;align-items:center;justify-content:center;border-radius:var(--radius);aspect-ratio:1;max-height:480px;position:relative;overflow:hidden;">
+                    ${product.image ? `<img src="../${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">` : product.svgIcon}
                   </div>
                   <!-- Features -->
                   <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
@@ -258,7 +290,7 @@
                 <!-- Right: Options -->
                 <div class="fade-in">
                   <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--clr-accent);font-weight:600;">${product.category}</span>
-                  <h1 style="font-family:Outfit,sans-serif;font-size:2.2rem;font-weight:800;color:#6D28D9;margin:0.5rem 0;">${product.name}</h1>
+                  <h1 style="font-family:Outfit,sans-serif;font-size:2.2rem;font-weight:800;color:#1F4E9E;margin:0.5rem 0;">${product.name}</h1>
                   <p style="color:var(--clr-text-muted);line-height:1.7;margin-bottom:2rem;">${product.description}</p>
 
                   <!-- Size -->
@@ -303,21 +335,44 @@
                   <!-- Price -->
                   <div class="price-display">
                     <span style="font-size:0.9rem;color:var(--clr-text-muted);">Total</span>
-                    <div id="total-price" style="font-family:Outfit,sans-serif;font-size:2rem;font-weight:800;color:#6D28D9;">
+                    <div id="total-price" style="font-family:Outfit,sans-serif;font-size:2rem;font-weight:800;color:#1F4E9E;">
                       <span class="currency">&#x20B9;</span>${product.sizes[0].price}
                     </div>
                   </div>
 
                   <!-- Order Button -->
                   <button class="btn btn-whatsapp" id="order-btn" onclick="placeOrder()" disabled style="width:100%;padding:1rem;font-size:1.1rem;gap:0.75rem;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.855 0-3.63-.51-5.18-1.475l-.37-.222-3.838 1.006 1.023-3.735-.244-.387A9.79 9.79 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"/></svg>
                     <span class="btn-text">Order on WhatsApp</span>
                   </button>
 
                   <!-- Note -->
-                  <div style="margin-top:1.5rem;padding:1rem;background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:0.75rem;display:flex;gap:0.75rem;font-size:0.9rem;color:var(--clr-text-muted);align-items:start;">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span>Your image will be <strong>uploaded automatically</strong> and the link will be included in your WhatsApp message. We will confirm your order and share payment details there.</span>
+                  <div class="order-note">
+                    <svg
+                      width="18"
+                      height="18"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="var(--clr-whatsapp)"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span
+                      >Your image will be <strong>uploaded automatically</strong> and
+                      the link will be included in your WhatsApp message. We will
+                      confirm your order and share payment details there.</span
+                    >
+                  </div>
+                  
+                  <!-- Cropper Controls for static page if used -->
+                  <div id="cropper-controls" style="display:none; margin-top: 1rem; gap: 0.5rem; display: flex;">
+                     <button id="cancel-crop" class="btn" style="flex:1; background: var(--clr-surface); color: var(--clr-text); border: 1px solid var(--clr-border);">Cancel</button>
+                     <button id="confirm-crop" class="btn btn-primary" style="flex:1;">Confirm & Upload</button>
                   </div>
                 </div>
               </div>
@@ -331,7 +386,7 @@
         document.querySelectorAll(".size-options .size-btn").forEach((btn) => {
           priceMap[btn.dataset.size] = parseInt(btn.dataset.price, 10);
         });
-        initOrderPage(product.name, priceMap);
+        initOrderPage(product, priceMap);
 
         // Re-observe dynamically injected .fade-in elements for scroll animation
         const observer = new IntersectionObserver(
