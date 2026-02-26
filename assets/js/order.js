@@ -27,6 +27,7 @@ const orderState = {
   activeShape: "square", // square, circle, heart
   uploadBlob: null, // The final cropped blob to upload
   skipEditor: false, // Skip photo editor for stickers
+  activeRatio: 1, // Default aspect ratio (1:1)
 };
 
 const PRICING = {};
@@ -35,6 +36,7 @@ const PRICING = {};
 function initOrderPage(productData, priceMap) {
   orderState.product = productData;
   Object.assign(PRICING, priceMap);
+  Object.freeze(PRICING); // Prevent price tampering via DevTools
 
   // Detect if this is a sticker product – skip photo editor
   const productName =
@@ -83,17 +85,34 @@ function injectCropperModal() {
         </div>
       </div>
       <div class="modal-footer">
+        <!-- Aspect Ratio Controls -->
+        <div class="ratio-controls">
+          <span class="control-label">Ratio</span>
+          <div class="ratio-buttons">
+            <button class="ratio-btn" data-ratio="free" title="Free crop">Free</button>
+            <button class="ratio-btn active" data-ratio="1" title="1:1 Square">1:1</button>
+            <button class="ratio-btn" data-ratio="4/3" title="4:3">4:3</button>
+            <button class="ratio-btn" data-ratio="3/2" title="3:2">3:2</button>
+            <button class="ratio-btn" data-ratio="16/9" title="16:9">16:9</button>
+            <button class="ratio-btn" data-ratio="3/4" title="3:4 Portrait">3:4</button>
+            <button class="ratio-btn" data-ratio="2/3" title="2:3 Portrait">2:3</button>
+            <button class="ratio-btn" data-ratio="9/16" title="9:16 Portrait">9:16</button>
+          </div>
+        </div>
         <!-- Shape Controls -->
         <div class="shape-controls">
-          <button class="shape-btn" data-shape="square" title="Square">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-          </button>
-          <button class="shape-btn" data-shape="circle" title="Circle/Round">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
-          </button>
-          <button class="shape-btn" data-shape="heart" title="Heart">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
+          <span class="control-label">Shape</span>
+          <div class="shape-buttons">
+            <button class="shape-btn" data-shape="square" title="Square">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            </button>
+            <button class="shape-btn" data-shape="circle" title="Circle/Round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </button>
+            <button class="shape-btn" data-shape="heart" title="Heart">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
         </div>
         <!-- Actions -->
         <div class="action-buttons">
@@ -113,16 +132,54 @@ function injectCropperModal() {
     .getElementById("modal-confirm")
     .addEventListener("click", confirmCrop);
 
+  // Ratio Switching
+  document.querySelectorAll(".ratio-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document
+        .querySelectorAll(".ratio-btn")
+        .forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const ratioVal = btn.dataset.ratio;
+      if (ratioVal === "free") {
+        orderState.activeRatio = NaN;
+        if (orderState.cropper) {
+          orderState.cropper.setAspectRatio(NaN);
+        }
+      } else {
+        const parts = ratioVal.split("/");
+        const ratio =
+          parts.length === 2
+            ? parseFloat(parts[0]) / parseFloat(parts[1])
+            : parseFloat(ratioVal);
+        orderState.activeRatio = ratio;
+        if (orderState.cropper) {
+          orderState.cropper.setAspectRatio(ratio);
+        }
+      }
+    });
+  });
+
   // Shape Switching
   document.querySelectorAll(".shape-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const shape = btn.dataset.shape;
       setCropperShape(shape);
-      // Update UI active state
       document
         .querySelectorAll(".shape-btn")
         .forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+
+      // When shape changes, force 1:1 ratio for circle/heart
+      if (shape === "circle" || shape === "heart") {
+        orderState.activeRatio = 1;
+        if (orderState.cropper) orderState.cropper.setAspectRatio(1);
+        // Highlight 1:1 ratio button
+        document
+          .querySelectorAll(".ratio-btn")
+          .forEach((b) => b.classList.remove("active"));
+        const oneToOne = document.querySelector('.ratio-btn[data-ratio="1"]');
+        if (oneToOne) oneToOne.classList.add("active");
+      }
     });
   });
 }
@@ -137,28 +194,45 @@ function openModal(imageSrc) {
   // Init Cropper
   if (orderState.cropper) orderState.cropper.destroy();
 
+  // Determine initial ratio
+  const initialRatio = orderState.activeRatio || 1;
+
   img.onload = () => {
     orderState.cropper = new Cropper(img, {
       viewMode: 1,
       dragMode: "move",
-      aspectRatio: 1, // Default to square/1:1 for most magnets
+      aspectRatio: initialRatio,
       autoCropArea: 0.9,
       restore: false,
       guides: true,
       center: true,
       highlight: false,
-      cropBoxMovable: false,
-      cropBoxResizable: false,
+      cropBoxMovable: true,
+      cropBoxResizable: true,
       toggleDragModeOnDblclick: false,
       ready() {
         // Set initial shape
         setCropperShape(orderState.activeShape);
-        // Highlight active button
+        // Highlight active shape button
         document.querySelectorAll(".shape-btn").forEach((b) => {
           b.classList.toggle(
             "active",
             b.dataset.shape === orderState.activeShape,
           );
+        });
+        // Highlight active ratio button
+        document.querySelectorAll(".ratio-btn").forEach((b) => {
+          const ratioVal = b.dataset.ratio;
+          if (ratioVal === "free") {
+            b.classList.toggle("active", isNaN(initialRatio));
+          } else {
+            const parts = ratioVal.split("/");
+            const r =
+              parts.length === 2
+                ? parseFloat(parts[0]) / parseFloat(parts[1])
+                : parseFloat(ratioVal);
+            b.classList.toggle("active", Math.abs(r - initialRatio) < 0.01);
+          }
         });
       },
     });
@@ -177,28 +251,23 @@ function closeModal() {
 function setCropperShape(shape) {
   orderState.activeShape = shape;
   const viewBox = document.querySelector(".cropper-view-box");
-  const face = document.querySelector(".cropper-face");
 
   if (!viewBox) return;
 
   // Reset
   viewBox.style.borderRadius = "0";
   viewBox.style.clipPath = "none";
-  viewBox.style.outline = "2px solid #fff"; // Reset default outline
+  viewBox.style.outline = "2px solid #fff";
 
   if (shape === "circle") {
     viewBox.style.borderRadius = "50%";
     viewBox.style.outline = "none";
-    // We can use a box-shadow to dim the outside if we want, handled by cropper css mostly
   } else if (shape === "heart") {
-    // CSS Clip Path for Heart
-    // Real Heart Polygon (approx)
     viewBox.style.borderRadius = "0";
     viewBox.style.outline = "none";
     viewBox.style.clipPath =
       "polygon(50% 88%, 39% 78%, 27% 66%, 18% 55%, 12% 44%, 10% 32%, 12% 21%, 18% 12%, 28% 7%, 39% 7%, 50% 18%, 61% 7%, 72% 7%, 82% 12%, 88% 21%, 90% 32%, 88% 44%, 82% 55%, 73% 66%, 61% 78%)";
   } else {
-    // Square
     viewBox.style.borderRadius = "0";
   }
 }
@@ -206,35 +275,60 @@ function setCropperShape(shape) {
 function confirmCrop() {
   if (!orderState.cropper) return;
 
+  // Get crop data to determine output dimensions
+  const cropData = orderState.cropper.getCropBoxData();
+  const ratio = cropData.width / cropData.height;
+  const maxDim = 1200;
+  let outW, outH;
+  if (ratio >= 1) {
+    outW = maxDim;
+    outH = Math.round(maxDim / ratio);
+  } else {
+    outH = maxDim;
+    outW = Math.round(maxDim * ratio);
+  }
+
   orderState.cropper
     .getCroppedCanvas({
-      width: 600, // Reasonable max width for upload
-      height: 600,
+      width: outW,
+      height: outH,
     })
     .toBlob(
       (blob) => {
-        // 1. Store the blob for uploading later (or upload now)
         orderState.uploadBlob = blob;
-
-        // 2. Create a local URL for preview
         const previewUrl = URL.createObjectURL(blob);
 
-        // 3. Update the Product Visual with this image
-        updateProductPreview(previewUrl);
-
-        // 4. Update the "Upload Area" to show "Image Selected"
         document.getElementById("upload-area").style.display = "none";
         document.getElementById("image-preview").style.display = "flex";
         document.getElementById("preview-img").src = previewUrl;
+        applyShapeToPreview();
 
-        // 5. Automatically start upload (good UX)
         uploadToCloudinary(blob);
-
         closeModal();
       },
       "image/jpeg",
       0.95,
     );
+}
+
+// Apply active shape cutout to the upload preview image
+function applyShapeToPreview() {
+  const img = document.getElementById("preview-img");
+  if (!img) return;
+
+  // Reset styles
+  img.style.borderRadius = "0";
+  img.style.clipPath = "none";
+  img.style.objectFit = "contain";
+
+  if (orderState.activeShape === "circle") {
+    img.style.borderRadius = "50%";
+    img.style.objectFit = "cover";
+  } else if (orderState.activeShape === "heart") {
+    img.style.clipPath =
+      "polygon(50% 88%, 39% 78%, 27% 66%, 18% 55%, 12% 44%, 10% 32%, 12% 21%, 18% 12%, 28% 7%, 39% 7%, 50% 18%, 61% 7%, 72% 7%, 82% 12%, 88% 21%, 90% 32%, 88% 44%, 82% 55%, 73% 66%, 61% 78%)";
+    img.style.objectFit = "cover";
+  }
 }
 
 // ─── Size Selector ───────────────────────────────
@@ -287,7 +381,14 @@ function initImageUpload() {
 
   if (!uploadArea || !fileInput) return;
 
-  uploadArea.addEventListener("click", () => fileInput.click()); // Ensure click works on area
+  // Prevent file input click from bubbling to upload area
+  fileInput.addEventListener("click", (e) => e.stopPropagation());
+
+  // Click on upload area → reset input and trigger file dialog
+  uploadArea.addEventListener("click", () => {
+    fileInput.value = ""; // Reset first so change event always fires
+    fileInput.click();
+  });
 
   uploadArea.addEventListener("dragover", (e) => {
     e.preventDefault();
@@ -312,15 +413,13 @@ function initImageUpload() {
 
   if (removeBtn) {
     removeBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent triggering uploadArea click
+      e.stopPropagation();
       orderState.imageUploaded = false;
       orderState.imageUrl = "";
       orderState.uploadBlob = null;
       document.getElementById("upload-area").style.display = "flex";
       document.getElementById("image-preview").style.display = "none";
-      updateProductPreview(null);
       updateOrderButton();
-      // Reset file input
       fileInput.value = "";
     });
   }
@@ -342,7 +441,6 @@ function handleFileSelect(file) {
     document.getElementById("upload-area").style.display = "none";
     document.getElementById("image-preview").style.display = "flex";
     document.getElementById("preview-img").src = previewUrl;
-    updateProductPreview(previewUrl);
     uploadToCloudinary(file);
     return;
   }
@@ -442,6 +540,16 @@ function placeOrder() {
     showToast("Please upload the image first.", "error");
     return;
   }
+
+  // Recalculate price from trusted source to prevent tampering
+  const trustedUnitPrice = PRICING[orderState.size];
+  if (!trustedUnitPrice || trustedUnitPrice <= 0) {
+    showToast("Invalid size selected. Please try again.", "error");
+    return;
+  }
+  const qty = Math.max(1, Math.min(100, Math.floor(orderState.quantity)));
+  const trustedTotal = trustedUnitPrice * qty;
+
   const productName =
     typeof orderState.product === "string"
       ? orderState.product
@@ -453,8 +561,8 @@ function placeOrder() {
     "Hello! I want to order:",
     productLine,
     `Size: ${orderState.size}`,
-    `Quantity: ${orderState.quantity}`,
-    `Total: ₹${orderState.price}`,
+    `Quantity: ${qty}`,
+    `Total: ₹${trustedTotal}`,
     "",
     `Image: ${orderState.imageUrl}`,
   ].join("\n");
