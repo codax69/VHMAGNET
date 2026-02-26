@@ -26,6 +26,7 @@ const orderState = {
   cropper: null,
   activeShape: "square", // square, circle, heart
   uploadBlob: null, // The final cropped blob to upload
+  skipEditor: false, // Skip photo editor for stickers
 };
 
 const PRICING = {};
@@ -35,7 +36,14 @@ function initOrderPage(productData, priceMap) {
   orderState.product = productData;
   Object.assign(PRICING, priceMap);
 
-  injectCropperModal(); // Add modal to DOM
+  // Detect if this is a sticker product – skip photo editor
+  const productName =
+    typeof productData === "string" ? productData : productData.name || "";
+  orderState.skipEditor = productName.toLowerCase().includes("sticker");
+
+  if (!orderState.skipEditor) {
+    injectCropperModal(); // Add modal to DOM only for non-sticker products
+  }
   initSizeSelector();
   initQuantityStepper();
   initImageUpload();
@@ -328,7 +336,18 @@ function handleFileSelect(file) {
     return;
   }
 
-  // Read and Open Modal
+  if (orderState.skipEditor) {
+    // For stickers: skip editor, directly preview and upload
+    const previewUrl = URL.createObjectURL(file);
+    document.getElementById("upload-area").style.display = "none";
+    document.getElementById("image-preview").style.display = "flex";
+    document.getElementById("preview-img").src = previewUrl;
+    updateProductPreview(previewUrl);
+    uploadToCloudinary(file);
+    return;
+  }
+
+  // Read and Open Modal for non-sticker products
   const reader = new FileReader();
   reader.onload = (e) => {
     openModal(e.target.result);
@@ -423,9 +442,16 @@ function placeOrder() {
     showToast("Please upload the image first.", "error");
     return;
   }
+  const productName =
+    typeof orderState.product === "string"
+      ? orderState.product
+      : orderState.product.name;
+  const productLine = orderState.skipEditor
+    ? `Product: ${productName}`
+    : `Product: ${productName} (${orderState.activeShape})`;
   const message = [
     "Hello! I want to order:",
-    `Product: ${orderState.product.name} (${orderState.activeShape})`,
+    productLine,
     `Size: ${orderState.size}`,
     `Quantity: ${orderState.quantity}`,
     `Total: ₹${orderState.price}`,

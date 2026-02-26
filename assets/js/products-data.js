@@ -72,7 +72,7 @@ const PRODUCTS = [
     id: "wedding-magnet",
     name: "Wedding Magnet",
     category: "magnet",
-    image: "assets/public/fream.jpeg",
+    image: "assets/public/wedding.png",
     tagline: "Cherish your special day",
     description:
       "Custom wedding photo magnets — perfect as save-the-date souvenirs, wedding favours, or a memorable keepsake for the couple. Available in elegant shapes.",
@@ -114,28 +114,7 @@ const PRODUCTS = [
     svgIcon:
       '<svg width="120" height="120" fill="none" viewBox="0 0 120 120"><rect x="28" y="50" width="64" height="46" rx="8" fill="rgba(255,255,255,0.12)" stroke="#fff" stroke-width="2"/><rect x="38" y="40" width="44" height="14" rx="4" fill="rgba(255,255,255,0.18)" stroke="#fff" stroke-width="1.5"/><line x1="60" y1="28" x2="60" y2="40" stroke="#fff" stroke-width="2"/><circle cx="60" cy="25" r="4" fill="rgba(255,255,255,0.5)"/></svg>',
   },
-  {
-    id: "baby-shower-magnet",
-    name: "Baby Shower Magnet",
-    category: "magnet",
-    image: "assets/public/brithday gift.jpeg",
-    tagline: "Tiny moments, big memories",
-    description:
-      "Adorable custom magnets for baby showers and newborn celebrations. Upload your baby's photo or sonogram for a sweet, lasting memento.",
-    startingPrice: 45,
-    sizes: [
-      { label: "3×3 inch", value: "3x3 inch", price: 45 },
-      { label: "4×4 inch", value: "4x4 inch", price: 80 },
-    ],
-    features: [
-      { icon: "heart", label: "Baby Safe Edges" },
-      { icon: "sparkle", label: "Soft Finish" },
-      { icon: "gift", label: "Cute Packaging" },
-    ],
-    gradient: "#06b6d4",
-    svgIcon:
-      '<svg width="120" height="120" fill="none" viewBox="0 0 120 120"><circle cx="60" cy="50" r="30" fill="rgba(255,255,255,0.12)" stroke="#fff" stroke-width="2"/><circle cx="48" cy="45" r="4" fill="rgba(255,255,255,0.3)"/><circle cx="72" cy="45" r="4" fill="rgba(255,255,255,0.3)"/><path d="M50 58a12 12 0 0020 0" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M42 25c-4-8 4-16 12-10M78 25c4-8-4-16-12-10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>',
-  },
+
 
   // ─── STICKERS ────────────────────────────────
   {
@@ -162,33 +141,10 @@ const PRODUCTS = [
       '<svg width="120" height="120" fill="none" viewBox="0 0 120 120"><path d="M60 12L76 46l36 5-26 25 6 36-32-17-32 17 6-36-26-25 36-5z" fill="rgba(255,255,255,0.15)" stroke="#fff" stroke-width="2"/><circle cx="60" cy="52" r="14" fill="rgba(255,255,255,0.18)"/></svg>',
   },
   {
-    id: "die-cut-sticker",
-    name: "Die-Cut Sticker",
-    category: "sticker",
-    image: "assets/public/quotes.jpeg",
-    tagline: "Cut to your shape",
-    description:
-      "Custom die-cut stickers shaped precisely around your design. No white borders — just your art in its perfect outline. Ideal for branding and creativity.",
-    startingPrice: 20,
-    sizes: [
-      { label: "2×2 inch", value: "2x2 inch", price: 20 },
-      { label: "3×3 inch", value: "3x3 inch", price: 45 },
-      { label: "4×4 inch", value: "4x4 inch", price: 80 },
-    ],
-    features: [
-      { icon: "scissors", label: "Custom Shape" },
-      { icon: "water", label: "Waterproof" },
-      { icon: "sparkle", label: "No White Border" },
-    ],
-    gradient: "#10b981",
-    svgIcon:
-      '<svg width="120" height="120" fill="none" viewBox="0 0 120 120"><path d="M60 16c24 0 44 20 44 44S84 104 60 104 16 84 16 60 36 16 60 16z" fill="rgba(255,255,255,0.1)" stroke="#fff" stroke-width="2" stroke-dasharray="6 4"/><rect x="36" y="36" width="48" height="48" rx="24" fill="rgba(255,255,255,0.15)" stroke="#fff" stroke-width="1.5"/></svg>',
-  },
-  {
     id: "laptop-sticker",
     name: "Laptop Sticker",
     category: "sticker",
-    image: "assets/public/frame.jpeg",
+    image: "assets/public/laptop.png",
     tagline: "Personalise your workspace",
     description:
       "Premium vinyl stickers sized perfectly for laptops and devices. Show off your personality with a custom sticker that lasts through daily use.",
@@ -211,7 +167,7 @@ const PRODUCTS = [
     id: "car-sticker",
     name: "Car / Bike Sticker",
     category: "sticker",
-    image: "assets/public/fridge magnet2.jpeg",
+    image: "assets/public/car.png",
     tagline: "Hit the road in style",
     description:
       "Durable outdoor-grade vinyl stickers designed for cars, bikes, and helmets. UV-resistant and weatherproof — built to survive the elements.",
@@ -257,7 +213,7 @@ const PRODUCTS = [
     id: "name-sticker",
     name: "Name Label Sticker",
     category: "sticker",
-    image: "assets/public/brithdaygift1.jpeg",
+    image: "assets/public/name.png",
     tagline: "Label everything that's yours",
     description:
       "Custom name label stickers for kids' school supplies, water bottles, lunch boxes, and more. Durable, waterproof, and available in fun designs.",
