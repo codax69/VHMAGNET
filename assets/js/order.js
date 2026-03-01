@@ -5,7 +5,7 @@
  */
 
 // ─── Config ──────────────────────────────────────
-const WHATSAPP_NUMBER = "919265318453";
+const WHATSAPP_NUMBER = "917863881162";
 const MAX_FILE_SIZE_MB = 10;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
@@ -18,7 +18,7 @@ const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOU
 const orderState = {
   product: "",
   size: "",
-  quantity: 1,
+  quantity: 1, 
   price: 0,
   imageUploaded: false,
   imageUrl: "", // Cloudinary URL after upload
